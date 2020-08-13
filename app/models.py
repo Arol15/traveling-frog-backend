@@ -7,7 +7,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-class User(db.Model): 
+class MixinAsDict:
+    def as_dict(self, skip=[]):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns if c.name not in skip}
+
+class User(MixinAsDict, db.Model): 
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30), nullable=False)
@@ -37,9 +41,17 @@ class User(db.Model):
     def __repr__(self):
         return f"User with {self.email} and {self.password}"
 
+    def to_dict(self):
+        return {
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "image": self.image,
+        }
+
 # TODO: def to_dictionary(self):
 
-class PointOfInterest(db.Model):
+class PointOfInterest(MixinAsDict, db.Model):
     __tablename__ = 'pointsofinterest'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), nullable=False)
@@ -58,16 +70,16 @@ class PointOfInterest(db.Model):
         return f'PointOfInterest: {self.title}, {self.address}, {self.city}, {self.state}, {self.country}'
 
 
-class PlaceType(db.Model):
+class PlaceType(MixinAsDict, db.Model):
     __tablename__ = 'placetypes'
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(100), nullable=False, unique=True)
 
 
-class Visit(db.Model):
+class Visit(MixinAsDict, db.Model):
     __tablename__ = 'visits'
     id = db.Column(db.Integer, primary_key=True)
-    pointsOfInterest_id = db.Column(db.Integer, db.ForeignKey('pointsofinterst.id'), nullable=False)
+    pointsOfInterest_id = db.Column(db.Integer, db.ForeignKey('pointsofinterest.id'), nullable=False)
     start_date_visited = db.Column(db.DateTime, nullable=False)
     end_date_visited = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
