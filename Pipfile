@@ -15,7 +15,7 @@ psycopg2-binary = "*"
 alembic = "*"
 flask-migrate = "*"
 flask-cors = "*"
-jwt = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.8"

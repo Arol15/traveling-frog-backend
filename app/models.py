@@ -17,7 +17,7 @@ class User(MixinAsDict, db.Model):
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
-    image = db.Column(db.String, nullable=False, default="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png") # add later
+    image = db.Column(db.String, default="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png") # add later
     hashed_password = db.Column(db.String(100), nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
     updatedAt = db.Column(db.DateTime(timezone=True), onupdate=func.now())
@@ -33,7 +33,7 @@ class User(MixinAsDict, db.Model):
         self.hashed_password = generate_password_hash(password)
     
     def check_password(self, password):
-        return self.check_password_hash(self.password, password)
+        return check_password_hash(self.password, password)
 
     def is_valid_email(self, email):
         return not re.match("[^@]+@[^@]+\.[^@]+", email)

@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_restx import Api
+# from flask_restx import Api
 from flask_migrate import Migrate
 from flask_cors import CORS
 
@@ -14,7 +14,7 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 app.register_blueprint(users.bp)
-# app.register_blueprint(session.bp)
+app.register_blueprint(session.bp)
 # app.register_blueprint(placetypes.py)
 # app.register_blueprint(pointsofinterest.py)
 # app.register_blueprint(visits)
