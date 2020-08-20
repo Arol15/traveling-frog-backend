@@ -68,6 +68,18 @@ class PointOfInterest(MixinAsDict, db.Model):
     placetype = db.relationship("PlaceType", backref="pointofinterest", lazy=True)
     # visit = db.relationship("Visit", backref='pointofinterest', lazy=True)
 
+    # def to_dict(): 
+    #     return {
+    #         "title": self.title,
+    #         "address": self.address,
+    #         "city": self.city,
+    #         "state": self.state,
+    #         "country": self.country,
+    #         "lat": self.lat,
+    #         "lng": self.lng,
+    #         "visited": False,
+    #     }
+
     def __repr__(self):
         return f'PointOfInterest: {self.title}, {self.address}, {self.city}, {self.state}, {self.country}'
 

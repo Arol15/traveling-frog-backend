@@ -50,6 +50,6 @@ def user_visits(email, typeId):
     # return {'pointsofinterest': pointsofinterestbytype}
     print(user.visits)
     # return {"visits": [v.as_dict() for v in user.visits]} 
-    res = [{**v.as_dict(), **{"pointsofinterest": v.pointofinterest.as_dict()}} \
-        for v in user.visits if v.pointofinterest.type_id == typeId]
+    res = [{**visit.as_dict(), **{"pointsofinterest": visit.pointofinterest.as_dict()}} \
+        for visit in user.visits if visit.pointofinterest.type_id == typeId]
     return {"visits": res}
