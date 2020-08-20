@@ -9,3 +9,7 @@ def pointsofinterest(typeId):
     pointsofinterestbytype = PointOfInterest.query.filter(PointOfInterest.type_id == typeId).all()
     pointsofinterestbytype = [point.as_dict() for point in pointsofinterestbytype]
     return {'pointsofinterest': pointsofinterestbytype}
+
+
+
+

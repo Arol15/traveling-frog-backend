@@ -62,9 +62,11 @@ class PointOfInterest(MixinAsDict, db.Model):
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     private = db.Column(db.Boolean, default=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     type_id = db.Column(db.Integer, db.ForeignKey('placetypes.id'), nullable=False)
 
     placetype = db.relationship("PlaceType", backref="pointofinterest", lazy=True)
+    # visit = db.relationship("Visit", backref='pointofinterest', lazy=True)
 
     def __repr__(self):
         return f'PointOfInterest: {self.title}, {self.address}, {self.city}, {self.state}, {self.country}'

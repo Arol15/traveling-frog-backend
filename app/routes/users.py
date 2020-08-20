@@ -41,3 +41,15 @@ def edit_user(userId):
     #     print(str(message))
     else: 
         return jsonify(message="check your entries"), 400
+
+@bp.route('/visits/<string:email>/<int:typeId>')
+def user_visits(email, typeId):
+    user = User.query.filter(User.email == email).one()
+    # pointsofinterestbytype = PointOfInterest.query.filter(PointOfInterest.type_id == typeId).all()
+    # pointsofinterestbytype = [point.as_dict() for point in pointsofinterestbytype]
+    # return {'pointsofinterest': pointsofinterestbytype}
+    print(user.visits)
+    # return {"visits": [v.as_dict() for v in user.visits]} 
+    res = [{**v.as_dict(), **{"pointsofinterest": v.pointofinterest.as_dict()}} \
+        for v in user.visits if v.pointofinterest.type_id == typeId]
+    return {"visits": res}
