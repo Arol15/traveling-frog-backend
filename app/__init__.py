@@ -8,7 +8,7 @@ from app.routes import users, session, collections, visits, pointsofinterest
 from app.models import db
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, support_credentials=True)
 app.config.from_object(Configuration)
 db.init_app(app)
 migrate = Migrate(app, db)
@@ -17,4 +17,4 @@ app.register_blueprint(users.bp)
 app.register_blueprint(session.bp)
 app.register_blueprint(collections.bp)
 app.register_blueprint(pointsofinterest.bp)
-# app.register_blueprint(visits)
+app.register_blueprint(visits.bp)

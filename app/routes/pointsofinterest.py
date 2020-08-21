@@ -23,6 +23,7 @@ def pointsofinterestwithvisit(typeId, email):
         interest["lat"] = point.lat
         interest["lng"] = point.lng
         interest["address"] = point.address
+        interest["id"] = point.id
         interest['visited'] = False 
         for visit in user.visits: 
             if visit.pointofinterest.id == point.id:

@@ -26,7 +26,7 @@ def login():
 
 @bp.route('/signup', methods=["POST"]) # create new account
 # @cross_origin()
-def signup():
+def signup(): 
     data = json.loads(request.get_data().decode('UTF-8'))
     # print(json.dumps(data, indent=4, sort_keys=True)['email'])
     # data = jsonify(data)
@@ -36,7 +36,7 @@ def signup():
     # data = request.json
     # print(f"\n\n\nDATA\n{data}\n\n\n")
     if test: 
-        return jsonify(message="The user is already exist"), 409
+        return jsonify(message="The user already exists"), 409
     else:
         # print(request.form) 
         last_name = data['last_name']
