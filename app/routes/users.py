@@ -23,16 +23,16 @@ def email(email):
     user = User.query.filter(User.email == email).one()
     return {"data": {'user': user.as_dict()}}
 
-@bp.route('/<int:userId>', methods=['PUT'])  # make changes to an existing user
-def edit_user(userId):
+@bp.route('/<string:email>', methods=['PUT'])  # make changes to an existing user
+def edit_user(email):
     users = request.json
-    print(users)
-    user = User.query.filter(User.id == userId).one()
-    print(user)
+    # print(users)
+    user = User.query.filter(User.email == email).one()
+    print(user.first_name)
     if user:
         user.first_name = users['first_name']
         user.last_name = users['last_name']
-        user.image = users['image']
+        # user.image = users['image']
         user.email = users['email']
         # user.password = data['password']
         db.session.commit()
