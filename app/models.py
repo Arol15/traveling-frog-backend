@@ -88,6 +88,7 @@ class PlaceType(MixinAsDict, db.Model):
     __tablename__ = 'placetypes'
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(100), nullable=False, unique=True)
+    image = db.Column(db.String)
 
 
 class Visit(MixinAsDict, db.Model):
