@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify
 from sqlalchemy.orm import joinedload
 from ..models import db, User
 from ..auth import require_auth
+from ..config import Configuration
+import boto3
 # from s3 import upload_file
 
 bp = Blueprint("users", __name__, url_prefix='/api/users')
@@ -56,12 +58,11 @@ def user_visits(email, typeId):
     return {"visits": res}
 
 
-# @bp.route("/upload", methods=['POST'])
-# def upload():
-#     if request.method == "POST":
-#         f = request.files['file']
-#         f.save(os.path.join(UPLOAD_FOLDER, f.filename))
-#         upload_file(f"uploads/{f.filename}", BUCKET)
-
-#         return 
-
+@bp.route('/files')
+def files():
+    s3_resource = boto3.resource('s3')
+    my_bucket = s3_resource.Bucket(Configuration.S3_BUCKET)
+    summaries = my_bucket.objects.all()
+    for o in summaries:
+        print(o.key)
+    return {"message": "bucket printed successfully"}, 200

@@ -46,66 +46,69 @@ with app.app_context():
 
     point1 = PointOfInterest(
         title="Yellowstone",
-        state='Utah',
-        lat="44.423691",
-        lng="-110.588516",
+        state='Wyoming',
+        lat="44.291842",
+        lng="-110.001380",
         type_id=1
     )
 
-    # point2 = PointOfInterest(
-    #     title="Grand Canyon",
-    #     state='Arizona',
-    #     lat="",
-    #     lng=""
-    # )
-    # point3 = PointOfInterest(
-    #     title="Everglades",
-    #     state='Florida',
-    #     lat="",
-    #     lng=""
-    # )
-    # point4 = PointOfInterest(
-    #     title="Yosemite",
-    #     state='California',
-    #     lat="",
-    #     lng=""
-    # )
-    # point5 = PointOfInterest(
-    #     title="Zion",
-    #     state='Arizona',
-    #     lat="",
-    #     lng=""
-    # )
-    # point6 = PointOfInterest(
-    #     title="",
-    #     state='',
-    #     lat="",
-    #     lng=""
-    # )
-    # point7 = PointOfInterest(
-    #     title="",
-    #     state='',
-    #     lat="",
-    #     lng=""
-    # )
-    # point8 = PointOfInterest(
-    #     title="",
-    #     state='',
-    #     lat="",
-    #     lng=""
-    # )
-    # point9 = PointOfInterest(
-    #     title="",
-    #     state='',
-    #     lat="",
-    #     lng=""
-    # )
-    # point10 = PointOfInterest(
-    #     title="",
-    #     state='',
-    #     lat="",
-    #     lng=""
-    # )
+    point2 = PointOfInterest(
+        title="Grand Canyon",
+        state='Arizona',
+        lat="36.056198",
+        lng="-112.125198",
+        type_id=1
+    )
+    point3 = PointOfInterest(
+        title="Everglades",
+        state='Florida',
+        lat="25.2866155",
+        lng=" -80.8986509",
+        type_id=1
+    )
+    point4 = PointOfInterest(
+        title="Yosemite",
+        state='California',
+        lat="37.9083432",
+        lng="-119.539726",
+        type_id=1
+    )
+    point5 = PointOfInterest(
+        title="Zion",
+        state='Utah',
+        lat="37.3223063",
+        lng="-113.324112",
+        type_id=1
+    )
+    point6 = PointOfInterest(
+        title="Grand Teton",
+        state='Wyoming',
+        lat="44.6021658",
+        lng="-112.1245949",
+        type_id=1
+    )
+    point7 = PointOfInterest(
+        title="Mount Rainer",
+        state='Washington',
+        lat="46.9421834",
+        lng="-122.1588316",
+        type_id=1
+    )
+
+    point9 = PointOfInterest(
+        title="Hawaii Volcanoes",
+        state='Hawaii',
+        lat="19.3833748",
+        lng="-155.2175571",
+        type_id=1
+    )
+    point10 = PointOfInterest(
+        title="Kenai Fjords",
+        state='Alaska',
+        lat="59.9902432",
+        lng="-151.5459454",
+        type_id=1
+    )
     # point11 = PointOfInterest(
     #     title="",
     #     state='',
@@ -144,4 +147,12 @@ with app.app_context():
     db.session.add(collection2)
     db.session.add(collection3)
     db.session.add(point1)
+    db.session.add(point2)
+    db.session.add(point3)
+    db.session.add(point4)
+    db.session.add(point5)
+    db.session.add(point6)
+    db.session.add(point7)
+    db.session.add(point9)
+    db.session.add(point10)
     db.session.commit()

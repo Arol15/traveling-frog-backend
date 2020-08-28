@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 import json
 from flask_cors import cross_origin
 from ..models import db, Visit, User
-from ..config import Configuration
+# from ..config import Configuration
 
 bp = Blueprint("visits", __name__, url_prefix="/api/visits")
 
