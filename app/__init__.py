@@ -14,6 +14,7 @@ s3_resource = boto3.resource(
 )
 
 app = Flask(__name__)
+app.config.from_object(Configuration)
 CORS(app, support_credentials=True)
 db.init_app(app)
 migrate = Migrate(app, db)

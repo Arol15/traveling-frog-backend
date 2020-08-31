@@ -26,7 +26,7 @@ def email(email):
     user = User.query.filter(User.email == email).one()
     return {"data": {'user': user.as_dict()}}
 
-@bp.route('/<string:email>', methods=['POST'])  # make changes to an existing user
+@bp.route('/<string:email>', methods=['PATCH'])  # make changes to an existing user
 def edit_user(email):
     users = request.json
     # print(users)
@@ -40,8 +40,6 @@ def edit_user(email):
         # user.password = data['password']
         db.session.commit()
         return {'user': user.as_dict()}
-    # except AssertionError as message:
-    #     print(str(message))
     else: 
         return jsonify(message="check your entries"), 400
 
@@ -66,3 +64,21 @@ def files():
     for o in summaries:
         print(o.key)
     return {"message": "bucket printed successfully"}, 200
+
+
+@bp.route('/image/<string:email>', methods=['POST'])  # make changes to an existing user's image
+def edit_image(email):
+    print(request.files)
+    file = request.files['image']
+
+    s3_resource = boto3.resource('s3')
+    my_bucket = s3_resource.Bucket(Configuration.S3_BUCKET)
+    my_bucket.Object(file.filename).put(Body=file, ACL='public-read')
+    
+
+    user = User.query.filter(User.email == email).one()
+    if user: 
+        user.image = f'https://traveling-frog-app.s3.us-east-2.amazonaws.com/{my_bucket.Object(file.filename).key}'
+        db.session.commit()
+        return {'user': user.as_dict()}
+    return {'message': 'uploaded'}, 200

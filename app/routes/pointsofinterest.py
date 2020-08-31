@@ -29,7 +29,7 @@ def pointsofinterestwithvisit(typeId, email):
             if visit.pointofinterest.id == point.id:
                 interest['visited'] = True
                 interest["rating"] = visit.rating
-                interest['images'] = visit.images
+                interest['image'] = visit.image
                 interest['start_date_visited'] = visit.start_date_visited
                 interest['end_date_visited'] = visit.end_date_visited
         placesofinterestwithvisited.append(interest)

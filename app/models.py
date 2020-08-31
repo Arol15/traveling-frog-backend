@@ -98,7 +98,7 @@ class Visit(MixinAsDict, db.Model):
     start_date_visited = db.Column(db.DateTime, nullable=False)
     end_date_visited = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    images = db.Column(db.ARRAY(db.String(255)))
+    image = db.Column(db.String)
     rating = db.Column(db.Integer, default=0)
 
     # user = db.relationship('User', backref='visits', lazy=True)
