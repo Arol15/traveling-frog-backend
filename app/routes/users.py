@@ -4,7 +4,6 @@ from ..models import db, User
 from ..auth import require_auth
 from ..config import Configuration
 import boto3
-# from s3 import upload_file
 
 bp = Blueprint("users", __name__, url_prefix='/api/users')
 

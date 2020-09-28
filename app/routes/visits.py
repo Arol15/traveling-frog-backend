@@ -56,6 +56,7 @@ def log_entry():
     }
 
     visit = Visit(**new_visit)
+    print(visit.as_dict())
     db.session.add(visit)
     db.session.commit()
     return {'visit': visit.as_dict()}
