@@ -17,6 +17,7 @@ flask-migrate = "*"
 flask-cors = "*"
 pyjwt = "*"
 boto3 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
