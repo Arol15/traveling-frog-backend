@@ -41,9 +41,6 @@ def signup():
         # print(request.form) 
         last_name = data['last_name']
         first_name = data['first_name']
-        # image = data['image']
-        # if image == "":
-        # image = None
         hashed_password = data['password']
         user = User(password=hashed_password, email=email, first_name=first_name, last_name=last_name)
         db.session.add(user)
