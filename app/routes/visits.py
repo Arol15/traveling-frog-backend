@@ -41,7 +41,7 @@ def log_entry():
     file = request.files['image']
 
     s3_resource = boto3.resource('s3')
-    my_bucket = s3_resource.Bucket(Configuration.S3_BUCKET)
+    my_bucket = s3_resource.Bucket(Configuration.AWS_BUCKET_NAME)
     my_bucket.Object(file.filename).put(Body=file, ACL='public-read')
 
     email = data["email"]
